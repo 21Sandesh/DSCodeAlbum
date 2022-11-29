@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct queue{
+    int data;
+    struct queue *next;
+};
+struct queue *front,*rear=NULL;
+void enqueue();
+void dequeue();
+void qpeek();
+void display_queue();
+
+
+void enqueue()
+{
+    struct queue *newnode;
+    newnode=(struct queue*)malloc(sizeof(struct queue));
+    printf("Enter the data: ");
+    scanf("%d",&newnode->data);
+    newnode->next=NULL;
+    if(front==NULL && rear==NULL)
+    {
+        front=rear=newnode;
+    }
+    else{
+        rear->next=newnode;
+        rear=newnode;
+    }
+}
+void dequeue()
+{
+    struct queue *temp;
+    if(front==NULL && rear==NULL)
+    {
+        printf("Queue is empty");
+    }
+    else{
+        temp=front;
+        printf("%d is delete from the queue",temp->data);
+        front=front->next;
+        free(temp);
+    }
+}
+void qpeek()
+{
+    if(front==NULL && rear==NULL)
+    {
+        printf("Queue is empty");
+    }
+    else{
+       printf("The top most element is %d",front->data); 
+    }
+}
+void display_queue()
+{
+    struct queue *temp;
+    if(front==NULL && rear==NULL)
+    {
+        printf("The queue is empty");
+    }
+    else{
+        temp=front;
+        while(temp!=NULL)
+        {
+            printf("%d ",temp->data);
+            temp=temp->next;
+        }
+    }
+}
